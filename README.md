@@ -86,7 +86,7 @@ pnpm run manifest:update-guid
 pnpm run manifest:validate
 ```
 
-Finally, run the following command to build and bundle all to folder `dist\`:
+Finally, run the following command to build and bundle all to folder `dist\` (notice that the **final manifest.xml** will be also output here):
 ```shell
 pnpm run build
 ```
