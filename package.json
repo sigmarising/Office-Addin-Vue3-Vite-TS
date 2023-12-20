@@ -8,7 +8,16 @@
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
-    "type-check": "vue-tsc --build --force"
+    "type-check": "vue-tsc --build --force",
+    "start": "office-addin-debugging start manifest.xml --dev-server vite",
+    "start:desktop": "office-addin-debugging start manifest.xml desktop --dev-server vite",
+    "start:web": "office-addin-debugging start manifest.xml web --dev-server vite",
+    "stop": "office-addin-debugging stop manifest.xml",
+    "manifest:validate": "office-addin-manifest validate manifest.xml",
+    "manifest:update-guid": "office-addin-manifest modify manifest.xml --guid",
+    "certs:install": "office-addin-dev-certs install ",
+    "certs:verify": "office-addin-dev-certs verify",
+    "certs:uninstall": "office-addin-dev-certs uninstall"
   },
   "dependencies": {
     "vue": "^3.3.11"
