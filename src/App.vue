@@ -16,10 +16,10 @@ const onClick = () => {
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HelloWorld msg="Congratulations!">
+        <button @click="onClick">Click to interact with Excel</button>
+      </HelloWorld>
     </div>
-
-    <button @click="onClick">Interact with Excel</button>
   </header>
 
   <main>
@@ -61,6 +61,7 @@ button {
   border-radius: 12px;
   margin-top: 30px;
   font-size: 1rem;
+  font-weight: bold;
   padding: 3px;
   transition: all 0.1s ease-in-out;
 }

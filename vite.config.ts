@@ -12,7 +12,9 @@ const isDev = true;
 const devPort = 8989;
 const prodUrl = "https://your.addin.production.url/";
 
+// Calculated
 const _homeDir = homedir();
+const _urlDefault = `https://localhost:3000/`;
 const _urlDev = `https://localhost:${devPort}/`;
 const _urlProd = `${prodUrl}`;
 
@@ -26,13 +28,12 @@ export default defineConfig({
           src: "manifest.xml",
           dest: "",
           transform(content) {
-            if (isDev) {
-              return content;
-            } else {
-              return content
-                .toString()
-                .replace(new RegExp(_urlDev, "g"), _urlProd);
-            }
+            return content
+              .toString()
+              .replace(
+                new RegExp(_urlDefault, "g"),
+                isDev ? _urlDev : _urlProd
+              );
           },
         },
       ],

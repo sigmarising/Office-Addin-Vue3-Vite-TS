@@ -9,9 +9,13 @@ defineProps<{
     <h1 class="green">{{ msg }}</h1>
     <h3>
       You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
+      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a> +
+      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> for
+      <a href="https://learn.microsoft.com/en-us/office/dev/add-ins/" target="_blank" rel="noopener">
+        Office Add-in
+      </a>!
     </h3>
+    <slot></slot>
   </div>
 </template>
 
@@ -33,6 +37,7 @@ h3 {
 }
 
 @media (min-width: 1024px) {
+
   .greetings h1,
   .greetings h3 {
     text-align: left;
