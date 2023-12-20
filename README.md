@@ -1,40 +1,104 @@
 # Office-Addin-Vue3-Vite-TS
 
-This template should help get you started developing with Vue 3 in Vite.
+This repository contains template to get start writing a TaskPane Office Add-in with the Vue3 framework using Vite and TypeScript.
 
-## Recommended IDE Setup
+**Feature:**
+* Vue3
+* Vite
+* TypeScript
+* Excel API
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+If you have interested about how this project is constructed, please see detail in this [NOTES](./NOTES.md).
 
-## Type Support for `.vue` Imports in TS
+## Recommended IDE
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+We recommend [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+We also recommend enable the [Volar Takeover Mode](https://vuejs.org/guide/typescript/overview.html#volar-takeover-mode).
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+## Project CMDs
 
-## Customize configuration
+This project use pnpm, see this [instruction](https://pnpm.io/installation) to install pnpm.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Before you go, please modify the configuration part in [`vite.config.ts`](./vite.config.ts):
+```ts
+// Configuration
 
-## Project Setup
+// `true` for Dev env
+// `false` for Prod env
+const isDev = true;
 
-```sh
+// port that dev server will run on
+// the manifest will be modified with this port when run in dev env
+const devPort = 8989;
+
+// only used in Prod env
+// the manifest will be modified with this url when run in prod env
+const prodUrl = "https://your.addin.production.url/";
+```
+
+Then init the project by:
+
+```shell
 pnpm install
 ```
 
-### Compile and Hot-Reload for Development
+Before we start the add-in, please run the following commands to install the https certs:
 
-```sh
-pnpm dev
+```shell
+pnpm run certs:install
 ```
 
-### Type-Check, Compile and Minify for Production
+The certs verify and uninstall commands also are provided:
+```shell
+# Verify the Certs
+pnpm run certs:verify
 
-```sh
-pnpm build
+# Uninstall the Certs
+pnpm run certs:uninstall
 ```
+
+Next, you can start the add-in debug by:
+```shell
+# Start Add-in in Desktop
+pnpm run start
+
+# Start Add-in in Desktop
+pnpm run start:desktop
+
+# Start Add-in in Office Online
+pnpm run start:web --document "https://url-to-online-doc"
+```
+
+Stop the add-in debug by:
+```shell
+pnpm run stop
+```
+
+> *If you only want to start the dev server, please run `pnpm run dev`*
+
+Before you publish the add-in, we suggest you update the guid and validate the manifest by:
+```shell
+# Update the Add-in GUID
+pnpm run manifest:update-guid
+
+# Validate the Manifest
+pnpm run manifest:validate
+```
+
+Finally, run the following command to build and bundle all to folder `dist\`:
+```shell
+pnpm run build
+```
+
+## Compatibility
+
+Project based on this template might use ES6 JavaScript, which is not compatible with [older versions of Office that use the Trident (IE 11) browser engine](https://learn.microsoft.com/en-us/office/dev/add-ins/concepts/browsers-used-by-office-web-add-ins). For information on how to support those platforms, see [Support older Microsoft webviews and Office versions](https://learn.microsoft.com/en-us/office/dev/add-ins/develop/support-ie-11).
+
+## Feedback
+
+[Create an issue](https://github.com/sigmarising/Office-Addin-Vue3-Vite-TS/issues) if you meet bugs or have feature request.
+
+## Disclaimer
+
+***This repo is community contributed and DO NOT have official support by Microsoft.***
