@@ -99,15 +99,10 @@ Modify `vite.config.ts` to adapt Https add `vite-plugin-static-copy` to copy `ma
 + import { viteStaticCopy } from "vite-plugin-static-copy";
   
 + // Configuration
-+ const isDev = true;
 + const devPort = 8989;
-+ const prodUrl = "https://your.addin.production.url/";
   
 + // Calculated
 + const _homeDir = homedir();
-+ const _urlDefault = `https://localhost:3000/`;
-+ const _urlDev = `https://localhost:${devPort}/`;
-+ const _urlProd = `${prodUrl}`;
   
   // https://vitejs.dev/config/
   export default defineConfig({
@@ -118,14 +113,6 @@ Modify `vite.config.ts` to adapt Https add `vite-plugin-static-copy` to copy `ma
 +         {
 +           src: "manifest.xml",
 +           dest: "",
-+           transform(content) {
-+             return content
-+               .toString()
-+               .replace(
-+                 new RegExp(_urlDefault, "g"),
-+                 isDev ? _urlDev : _urlProd
-+               );
-+           },
 +         },
 +       ],
 +     }),
